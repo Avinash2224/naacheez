@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
@@ -7,12 +7,39 @@ interface HeaderProps {
 }
 
 export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // scrolling down → hide
+        setShowHeader(false);
+      } else {
+        // scrolling up → show
+        setShowHeader(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm transform transition-transform duration-300 ${
+        showHeader ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-white">ECHOES</h1>
+            <img 
+              src="/naacheez-logo.jpg" 
+              alt="Naacheez" 
+              className="h-12 w-auto"
+            />
           </div>
           
           <nav className="hidden md:block">
@@ -45,7 +72,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-sm">
+        <div className="md:hidden bg-black/70 backdrop-blur-sm">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <a href="#home" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
               Home
