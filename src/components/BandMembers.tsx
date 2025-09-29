@@ -208,6 +208,15 @@ export default function BandMembers() {
                         </div>
                       </div>
                     </div>
+                    
+                    {/* Individual Card Progress Bar - Only shows when expanded */}
+                    {expandedCards[index] && (
+                      <div className="px-8 pb-4">
+                        <div className="w-full bg-gray-700 rounded-full h-1 overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-orange-400 to-orange-600 w-full transition-all duration-500"></div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -229,7 +238,7 @@ export default function BandMembers() {
             ))}
           </div>
 
-          {/* Progress Bar */}
+          {/* Global Progress Bar - Shows carousel progress */}
           <div className="mt-4 w-full bg-gray-700 rounded-full h-1 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-700 ease-out"

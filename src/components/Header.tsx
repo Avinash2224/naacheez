@@ -26,6 +26,21 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Function to handle smooth scrolling and close mobile menu
+  const handleNavClick = (targetId: string) => {
+    // Close mobile menu if open
+    setIsMenuOpen(false);
+    
+    // Smooth scroll to target element
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm transform transition-transform duration-300 ${
@@ -42,16 +57,44 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
           
           <nav className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a href="#home" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+              <a 
+                href="#home" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('home');
+                }}
+                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+              >
                 Home
               </a>
-              <a href="#band" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+              <a 
+                href="#band" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('band');
+                }}
+                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+              >
                 Band
               </a>
-              <a href="#gallery" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+              <a 
+                href="#gallery" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('gallery');
+                }}
+                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+              >
                 Gallery
               </a>
-              <a href="#contact" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+              <a 
+                href="#contact" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('contact');
+                }}
+                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+              >
                 Contact
               </a>
             </div>
@@ -72,16 +115,44 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
       {isMenuOpen && (
         <div className="md:hidden bg-black/70 backdrop-blur-sm">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a href="#home" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
+            <a 
+              href="#home" 
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('home');
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
+            >
               Home
             </a>
-            <a href="#band" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
+            <a 
+              href="#band" 
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('band');
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
+            >
               Band
             </a>
-            <a href="#gallery" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
+            <a 
+              href="#gallery" 
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('gallery');
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
+            >
               Gallery
             </a>
-            <a href="#contact" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
+            <a 
+              href="#contact" 
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('contact');
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
+            >
               Contact
             </a>
           </div>
