@@ -2,7 +2,7 @@ import { Play } from 'lucide-react';
 
 export default function Hero() {
   const handleListenNow = () => {
-    window.open('https://youtu.be/fdINfdedlmA?si=3n2BEKiCLD21xEND', '_blank');
+    window.open('https://open.spotify.com/track/5WvssQNrbPJFry4W6QQwwC?si=5kDE2lq-TLmEMe43PI-Iuw&context=spotify%3Asearch%3Aritu', '_blank');
   };
 
   return (
