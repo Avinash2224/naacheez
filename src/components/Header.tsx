@@ -28,10 +28,7 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
 
   // Function to handle smooth scrolling and close mobile menu
   const handleNavClick = (targetId: string) => {
-    // Close mobile menu if open
     setIsMenuOpen(false);
-    
-    // Smooth scroll to target element
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({
@@ -43,63 +40,50 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm transform transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm transform transition-transform duration-300 ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+          {/* Logo Image */}
           <div className="flex items-center">
-            <h1 className="text-white text-xl md:text-2xl font-bold tracking-wider">
+            <img 
+              src="/logo-center.png" 
+              alt="Naacheez Logo" 
+              className="h-10 md:h-12 w-auto transition-all duration-300 hover:scale-105"
+              onError={(e) => {
+                // Fallback to text if image doesn't load
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'block';
+              }}
+            />
+            {/* Fallback text (hidden by default) */}
+            <h1 className="hidden text-white text-xl md:text-2xl font-bold tracking-wider">
               NAACHEEZ
             </h1>
           </div>
           
+          {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a 
-                href="#home" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('home');
-                }}
-                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
-              >
-                Home
-              </a>
-              <a 
-                href="#band" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('band');
-                }}
-                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
-              >
-                Band
-              </a>
-              <a 
-                href="#gallery" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('gallery');
-                }}
-                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
-              >
-                Gallery
-              </a>
-              <a 
-                href="#contact" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('contact');
-                }}
-                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
-              >
-                Contact
-              </a>
+              {["home", "about", "band", "contact"].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item);
+                  }}
+                  className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              ))}
             </div>
           </nav>
 
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -111,50 +95,23 @@ export default function Header({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black/70 backdrop-blur-sm">
+        <div className="md:hidden bg-black/95 backdrop-blur-sm">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a 
-              href="#home" 
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('home');
-              }}
-              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
-            >
-              Home
-            </a>
-            <a 
-              href="#band" 
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('band');
-              }}
-              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
-            >
-              Band
-            </a>
-            <a 
-              href="#gallery" 
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('gallery');
-              }}
-              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
-            >
-              Gallery
-            </a>
-            <a 
-              href="#contact" 
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('contact');
-              }}
-              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
-            >
-              Contact
-            </a>
+            {["home", "about", "band", "contact"].map((item) => (
+              <a
+                key={item}
+                href={`#${item}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item);
+                }}
+                className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium cursor-pointer"
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </a>
+            ))}
           </div>
         </div>
       )}

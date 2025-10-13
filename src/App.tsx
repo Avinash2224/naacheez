@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import BandMembers from './components/BandMembers';
-import Gallery from './components/Gallery';
+import AboutUs from './components/AboutUs';
+import VideoSection from './components/VideoSection'; // Add this
+import Band from './components/Band';
 import Footer from './components/Footer';
 
 function App() {
@@ -33,8 +34,9 @@ function App() {
     <div className="min-h-screen bg-black">
       <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <Hero />
-      <BandMembers />
-      <Gallery />
+      <AboutUs />
+      <Band />
+      <VideoSection /> {/* Add this between About and Gallery */}
       <Footer />
     </div>
   );

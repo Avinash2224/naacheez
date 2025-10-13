@@ -1,73 +1,75 @@
-import { Play } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Play } from "lucide-react";
 
 export default function Hero() {
-  const handleListenNow = () => {
-    window.open('https://open.spotify.com/track/5WvssQNrbPJFry4W6QQwwC?si=5kDE2lq-TLmEMe43PI-Iuw&context=spotify%3Asearch%3Aritu', '_blank');
+  const handlePlay = () => {
+    window.open(
+      "https://open.spotify.com/track/5WvssQNrbPJFry4W6QQwwC?si=5kDE2lq-TLmEMe43PI-Iuw&context=spotify%3Asearch%3Aritu",
+      "_blank"
+    );
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(/home-bg.jpg)'
-        }}
-      >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black opacity-60"></div>
-        {/* Grunge texture overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70"></div>
-      </div>
+    <section
+      id="home"
+      className="relative min-h-screen px-10 md:px-24 py-20"
+      style={{ backgroundColor: "#F7FEF9" }}
+    >
+      {/* Top Section - Naacheez Text and Spotify */}
+      <div className="flex items-start justify-between mb-16">
+        {/* Left Side - Naacheez Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="text-black leading-none font-sans"
+        >
+          <h1 className="text-[9rem] md:text-[14rem] font-bold tracking-tight">Naach</h1>
+          <h1 className="text-[9rem] md:text-[14rem] font-bold tracking-tight -mt-8 md:-mt-12">eez</h1>
+        </motion.div>
 
-      {/* Main Content */}
-      <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4">
-        {/* Band Logo - Smaller Size */}
-        <div className="mb-8">
-          <img 
-            src="/logo-center.png" 
-            alt="Naacheez Band Logo"
-            className="w-auto h-32 md:h-40 lg:h-48 mx-auto mb-4 drop-shadow-2xl filter brightness-110 contrast-110"
-          />
-          <div className="w-32 h-1 bg-orange-500 mx-auto mb-6"></div>
-        </div>
+        {/* Right Side - Spotify Section */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+          className="flex flex-col items-center gap-8 mt-12"
+        >
+          {/* Spotify logo and text */}
+          <div className="flex items-center gap-4">
+            <img
+              src="/spotify-logo.png"
+              alt="Spotify"
+              className="w-12 h-12 md:w-14 md:h-14"
+            />
+            <span className="text-2xl md:text-3xl font-semibold text-black">
+              Listen on <span className="text-green-600">Spotify</span>
+            </span>
+          </div>
 
-        {/* Band Description with Latest Release */}
-        <p className="text-lg md:text-xl mb-12 text-gray-200 max-w-4xl mx-auto leading-relaxed font-light">
-          Hailing from the heart of <span className="text-orange-400 font-semibold">Lucknow</span>, 
-          Naacheez is a rock band driven by thunderous riffs, gritty vocals, and a passion for pure, 
-          unfiltered heavy sound. Fusing influences from classic rock to modern alt, the band delivers 
-          a high energy experience that hits hard and stays with you. 
-          Their debut single, <span className="text-orange-400 font-bold">"RITU AAWE"</span>, 
-          dropped in <span className="text-orange-400 font-semibold">June 2025</span> making waves 
-          with its raw power and anthemic chorus. Whether you catch them live or on repeat, 
-          Naacheez is here to remind you—rock isn't dead, It just got louder!!!
-        </p>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          <button 
-            onClick={handleListenNow}
-            className="group bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-3 shadow-2xl"
+          {/* Play Button */}
+          <button
+            onClick={handlePlay}
+            className="flex items-center justify-center w-24 h-24 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110"
           >
-            <Play className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            Listen Now
+            <Play size={40} fill="white" />
           </button>
-          
-          <button className="border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 backdrop-blur-sm">
-            View Gallery
-          </button>
-        </div>
-
-        {/* Rock Motto */}
-        <div className="text-xl md:text-2xl font-bold text-orange-400 tracking-wide">
-          Rock isn't dead, It just got <span className="text-white">LOUDER!!!</span>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-8 w-2 h-32 bg-gradient-to-b from-orange-500 to-transparent opacity-60"></div>
-      <div className="absolute bottom-1/4 right-8 w-2 h-32 bg-gradient-to-t from-orange-500 to-transparent opacity-60"></div>
+      {/* Band Photo */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+        className="w-full rounded-2xl overflow-hidden shadow-2xl"
+      >
+        <img
+          src="/band-bg.jpg"
+          alt="Naacheez Band"
+          className="w-full h-[60vh] md:h-[70vh] object-cover"
+        />
+      </motion.div>
     </section>
   );
 }
