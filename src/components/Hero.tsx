@@ -71,7 +71,7 @@ export default function Hero() {
       </div>
 
       {/* Band Photo - Mobile Responsive */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
@@ -86,7 +86,35 @@ export default function Hero() {
             e.target.src = 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200';
           }}
         />
-      </motion.div>
+      </motion.div> */}
+
+
+      {/* Band Photo - Mobile Responsive */}
+<motion.div
+  initial={{ opacity: 0, y: 60 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+  className="w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl"
+>
+  <img
+    src="/band-bg.jpg"
+    alt="Naacheez Band"
+    className="
+      w-full 
+      h-auto 
+      max-h-[70vh]
+      object-contain 
+      sm:object-cover 
+      object-center
+      transition-all duration-500
+    "
+    onError={(e) => {
+      // Fallback for band image
+      e.target.src =
+        'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200';
+    }}
+  />
+</motion.div>
 
       {/* Mobile-specific bottom spacing */}
       <div className="h-8 sm:h-12 lg:h-0"></div>
