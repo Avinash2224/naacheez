@@ -25,7 +25,7 @@ export default function Hero() {
           className="text-black leading-none font-sans w-full lg:w-auto"
         >
           <h1 className="text-[4rem] xs:text-[5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[14rem] font-bold tracking-tight">
-            Naacheezc
+            Naacheez
           </h1>
           {/* <h1 className="text-[4rem] xs:text-[5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[14rem] font-bold tracking-tight -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12">
             eez
